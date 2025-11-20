@@ -1,10 +1,10 @@
 with info as(
 select
     n.nation_id,
-    n.name as n_name,
-    r.name as r_name,
+    n.nation_name as n_name,
+    r.region_name as r_name,
     n.region_id,
-    n.comment
+    r.region_comment
 from {{ ref('stg_nations') }} 
 as n
 join {{ ref('stg_regions') }} 

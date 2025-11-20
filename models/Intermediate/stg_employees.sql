@@ -1,9 +1,8 @@
 with emp as (
-    select * from {{source('src2','STG_EMPLOYEES')}}
+    select * from {{source('src2','stg_employees')}}
 )
 
 select
-    ANALYTICS.DBT_ANUSHA.EMPLOYEE_KEY_SEQ.nextval as EMPLOYEE_KEY,
     EMPLOYEE_ID,
     {{jodo('EMPLOYEE_FIRST_NAME','EMPLOYEE_LAST_NAME')}} as EMPLOYEE_NAME,
     EMPLOYEE_ADDRESS,

@@ -1,3 +1,9 @@
+{{config(
+    tags='sample',
+)}}
+{# pre_hook= {'before_begin':"use warehouse load_wh"},
+    post_hook="select * from ANALYTICS.DBT_SSHELLY.STG_REGIONS" 
+    should be in config block#}
 with
     customer as (
         select
