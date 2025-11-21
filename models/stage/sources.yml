@@ -8,6 +8,7 @@ sources:
       - name: regions
       - name: nations
       - name: suppliers
+      - name: partsupps
       - name: orders
         config:
           freshness:

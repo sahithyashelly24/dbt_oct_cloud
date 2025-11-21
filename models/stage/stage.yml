@@ -11,25 +11,41 @@ models:
         data_tests:
           - accepted_values:
               arguments:
-                values: ['AFRICA', 'AMERICA', 'ASIA']
+                values: ['AFRICA', 'AMERICA', 'ASIA','MIDDLE EAST' ,'EUROPE']
                 config:
                   store_failures: true
                   schema: error
   - name: stg_nations
+    config:
+      group: sales
+      contract:
+        enforced: true
     columns:
       - name: nation_id
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: nation_name
+        data_type: string
+        constraints:
+          - type: not_null
+          
         description: '{{doc("primary_key")}}'
-
         data_tests:
           - not_null
           - unique
       - name: region_id
+        data_type: int
         data_tests:
           - relationships:
               arguments:
                 to: ref('stg_regions')
-                field: region_i
+                field: region_id
+                config:
+                  store_failures: true
   - name: stg_customers
+    config:
+      group: sales
     columns:
       - name: customer_id
         description: '{{doc("primary_key")}}'
@@ -42,9 +58,8 @@ models:
               to: ref('stg_nations')
               field: nation_id
   - name: stg_orders
-
     columns:
-      - name: order_id
+      - name: o_orderkey
         description: '{{doc("primary_key")}}'
         data_tests: 
           - not_null
@@ -54,7 +69,7 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
-      - name: status_code
+      - name: o_orderstatus
         data_tests:
           - accepted_values:
               values: ['F', 'O', 'P']

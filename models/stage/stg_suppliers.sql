@@ -1,4 +1,6 @@
-
+{{config(
+    materialised='ephemeral'
+)}}
 with suppliers as(
     select 
     -- ids
