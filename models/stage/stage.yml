@@ -59,7 +59,7 @@ models:
               field: nation_id
   - name: stg_orders
     columns:
-      - name: o_orderkey
+      - name: order_id
         description: '{{doc("primary_key")}}'
         data_tests: 
           - not_null
@@ -69,7 +69,7 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
-      - name: o_orderstatus
+      - name: order_status
         data_tests:
           - accepted_values:
               values: ['F', 'O', 'P']
