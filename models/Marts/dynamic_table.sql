@@ -2,6 +2,7 @@
     materialized = 'dynamic_table',
     target_lag = '5 minutes',
     snowflake_warehouse = "TRANSFORM_WH",
+    
     refresh_mode = "AUTO"
 ) }}
 
