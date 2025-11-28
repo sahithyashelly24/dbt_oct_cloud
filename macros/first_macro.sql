@@ -46,6 +46,10 @@
     to_char({{ column_name }}::date, 'YYYYMMDD')
 {% endmacro %}
 
+{% macro get_invocation_id() %}
+ {{'invocation_id'}}
+{% endmacro %}
+
 
 {% macro create_stage_and_export() %}
 

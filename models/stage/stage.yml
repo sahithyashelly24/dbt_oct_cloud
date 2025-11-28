@@ -29,7 +29,12 @@ models:
         data_type: string
         constraints:
           - type: not_null
-
+      - name: invocation_id
+        data_type: varchar
+      - name: dbt_batch_id
+        data_type: varchar
+      - name: dbt_batch_ts
+        data_type: timestamp_ntz
         description: '{{doc("primary_key")}}'
         data_tests:
           - not_null

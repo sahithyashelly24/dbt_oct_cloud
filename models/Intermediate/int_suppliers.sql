@@ -1,4 +1,4 @@
-with
+{#with
     sup as (
         select
             supplier_id,
@@ -15,17 +15,16 @@ with
     nat as (
         select
             nation_id,
-            name as nation_name,
-            region_id,
-            updated_at as nation_updated_at
+            nation_name,
+            region_id
         from {{ ref('stg_nations') }}
     ),
 
     reg as (
         select
             region_id,
-            name as region_name,
-            comment as region_comment
+            region_name,
+            region_comment
         from {{ ref('stg_regions') }}
     )
 
@@ -38,8 +37,8 @@ select
     sup.account_balance,
 
     -- Nation
-    nat.nation_name,
-    nat.region_id,
+    --nat.nation_name,
+    --nat.region_id,
 
     -- Region
     reg.region_name,
@@ -47,4 +46,20 @@ select
 
 from sup
 join nat on sup.nation_id = nat.nation_id
-join reg on nat.region_id = reg.region_id
+join reg on nat.region_id = reg.region_id#}
+
+
+
+with supp as 
+(select * from {{ref('stg_suppliers')}}),
+nation as 
+(select * from {{ref('stg_nations')}}),
+region as
+(select * from {{ref('stg_regions')}})
+
+select 
+supp.* exclude nation_id,
+nation.nation_name as nation,region.region_name as region
+from supp
+join nation on supp.nation_id=nation.nation_id
+join region on nation.region_id=region.region_id
